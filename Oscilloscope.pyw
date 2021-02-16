@@ -52,10 +52,12 @@ class App:
         self.gbtn4.grid(row=1, column=3, sticky=W + E)
 
         self.serial_speed = ttk.Combobox(
-            self.window, values=("9600", "115200"), state="readonly")
+            self.window, values=("9600", "115200"), state="readonly",
+            foreground='brown')
         self.serial_speed.place(relx=.71, rely=0)
         self.serial_speed.current(1)
         self.serial_speed.bind("<<ComboboxSelected>>", self.com)
+        self.serial_speed.bind("<FocusIn>", self.defocus)
 
         self.draw_axis()
         self.run = False
@@ -71,8 +73,10 @@ class App:
         # self.message()
         self.window.destroy()
 
+    def defocus(self, *args):
+        self.window.focus()
+
     def com(self, *args):
-        self.window.focus_set()
         if self.run and serial_run:
             self.ser.baudrate = int(self.serial_speed.get())
 
@@ -104,7 +108,6 @@ class App:
         self.get_data()
 
     def draw_axis(self):
-        self.window.focus_set()
         self.can.delete("all")
         self.can.create_line(250, 0, 250, 500, fill='brown')
         self.can.create_line(0, 250, 500, 250, fill='brown')
