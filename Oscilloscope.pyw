@@ -4,7 +4,7 @@ import os
 from random import randint
 from math import sin
 from tkinter import Tk, Canvas, LabelFrame, Button, FLAT, GROOVE, \
-    RAISED, SUNKEN, CENTER, W, E, messagebox, ttk
+    RAISED, SUNKEN, CENTER, W, E, N, messagebox, ttk
 
 import serial
 import serial.tools.list_ports
@@ -54,7 +54,7 @@ class App:
         self.serial_speed = ttk.Combobox(
             self.window, values=("9600", "115200"), state="readonly",
             foreground='brown')
-        self.serial_speed.place(relx=.71, rely=0)
+        self.serial_speed.place(relx=1, rely=0, anchor=N + E)
         self.serial_speed.current(1)
         self.serial_speed.bind("<<ComboboxSelected>>", self.com)
         self.serial_speed.bind("<FocusIn>", self.defocus)
