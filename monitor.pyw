@@ -10,8 +10,25 @@ def win_close():
 
 
 def com(*args):
-    board.baudrate = int(box.get())
-    label['text'] = f'{board.baudrate}   {board.port}'
+    if port_run:
+        board.baudrate = int(box.get())
+        label['text'] = f'{board.baudrate}   {port_name}'
+
+
+def icon():
+    from PIL import Image, ImageDraw, ImageFont, ImageTk
+
+    unicod = '\u0056\u004F'
+    size = 16
+    im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(im)
+    font = ImageFont.load_default()
+    ts = font.getsize(unicod)
+    draw.ellipse((0, 0, size, size), fill=(68, 71, 90, 90))
+    draw.text(
+        ((size - ts[0]) // 2, (size - ts[1]) // 2),
+        unicod, font=font, fill=(0, 0, 250))
+    root.iconphoto(False, ImageTk.PhotoImage(im))
 
 
 port_run = False
@@ -25,7 +42,6 @@ if not port_run:
 time.sleep(2)
 
 root = Tk()
-# root.withdraw()  # не показывать окно
 root.title('Monitor')
 root.geometry('+1+1')
 root.protocol('WM_DELETE_WINDOW', win_close)
@@ -43,6 +59,7 @@ label.place(relx=1, rely=1, anchor='se')
 buttton = Button(root, text="Quit", command=win_close)
 buttton.pack(fill='x')
 text.delete(1.0, 'end')
+icon()
 
 run = [True]
 while run[0]:
