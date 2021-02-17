@@ -62,6 +62,8 @@ class App:
         self.draw_axis()
         self.run = False
         self.itable = []
+        self.age = 0
+        self.ser = None
         self.window.mainloop()
 
     def message(self):
@@ -88,7 +90,6 @@ class App:
         x1, x2, y1, y2 = -10, 10, -10, 10
 
         dx = (x2 - x1) / 500.
-        dy = (y2 - y1) / 500.
         coords = []
 
         for i in range(500):
@@ -154,8 +155,8 @@ class App:
         self.itable.clear()
 
         if serial_run:
-            SERIAL_SPEED = int(self.serial_speed.get())
-            self.ser = serial.Serial(SERIAL_PORT, SERIAL_SPEED, timeout=.1)
+            serial.speed = int(self.serial_speed.get())
+            self.ser = serial.Serial(SERIAL_PORT, serial.speed, timeout=.1)
 
             while self.run:
                 num = ''
@@ -179,7 +180,7 @@ class App:
 
 
 def main():
-    app = App()
+    App()
 
 
 if __name__ == "__main__":
