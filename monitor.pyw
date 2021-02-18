@@ -1,8 +1,9 @@
+import sys
 import time
 from tkinter import Button, Tk, scrolledtext, Label, ttk
 import serial
 import serial.tools.list_ports
-import sys
+from PIL import Image, ImageDraw, ImageFont, ImageTk
 
 
 def win_close():
@@ -16,9 +17,7 @@ def com(*args):
 
 
 def icon():
-    from PIL import Image, ImageDraw, ImageFont, ImageTk
-
-    unicod = '\u0056\u004F'
+    unicod = '\u0076\u006F'  # 'vo'
     size = 16
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
@@ -26,8 +25,8 @@ def icon():
     ts = font.getsize(unicod)
     draw.ellipse((0, 0, size, size), fill=(68, 71, 90, 90))
     draw.text(
-        ((size - ts[0]) // 2, (size - ts[1]) // 2),
-        unicod, font=font, fill=(0, 0, 250))
+        ((size - ts[0]) / 2., (size - ts[1]) / 2.),
+        unicod, font=font, fill=(255, 0, 0))
     root.iconphoto(False, ImageTk.PhotoImage(im))
 
 
@@ -39,7 +38,7 @@ for port in list(serial.tools.list_ports.comports()):
     # print(port)
 if not port_run:
     port_name, port_speed = 'COMx', 'NONE'
-time.sleep(2)
+time.sleep(1)
 
 root = Tk()
 root.title('Monitor')
