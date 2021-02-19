@@ -1,9 +1,8 @@
 import sys
 import time
-from tkinter import Button, Tk, scrolledtext, Label, ttk
+from tkinter import Button, Tk, scrolledtext, Label, ttk, PhotoImage
 import serial
 import serial.tools.list_ports
-from PIL import Image, ImageDraw, ImageFont, ImageTk
 
 
 def win_close():
@@ -14,19 +13,6 @@ def com(*args):
     if port_run:
         board.baudrate = int(box.get())
         label['text'] = f'{board.baudrate}   {port_name}'
-
-
-def icon():
-    unicod = '\u0076\u006F'  # 'vo'
-    size = 16
-    im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(im)
-    ts = draw.textsize(unicod)
-    draw.ellipse((0, 0, size - 2, size - 2), fill=(68, 71, 90, 90))
-    draw.text(
-        ((size - ts[0]) // 2, (size - ts[1]) // 2 - 1),
-        unicod, fill=(255, 0, 0))
-    root.iconphoto(False, ImageTk.PhotoImage(im))
 
 
 port_run = False
@@ -57,7 +43,35 @@ label.place(relx=1, rely=1, anchor='se')
 buttton = Button(root, text="Quit", command=win_close)
 buttton.pack(fill='x')
 text.delete(1.0, 'end')
-icon()
+root.iconphoto(False, PhotoImage(
+    data='iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAE+ElEQVRYR8V'
+    'XbVBUVRg+59zd5WP5RiSIERAcdjFTUECibS8IFNYwwg4D09RMSj9sJst+NTpo/Wh'
+    'qpqYfOWN/+iAjdQIB04xAxUVkYpGQaQERWClQCoUV+TDg7jm3c4BLd5dFPmRm75/'
+    'de9/3vuc5z/O+7z0vBMu8eJ5XCIqgUIWIgjkR+GMA1RACFXtdFME0B8QJDMEDGyS'
+    'DStv9AaPRaFtOaLiUE8/neWEEYpUcCgcAKZbyn7UTm4DJXxwBHUZj2fjj3nkMgDy'
+    'O58EWwHExCEG0vIXtvQgRCcD4ltEIzACUYWcxnAJguxYR0nEc8lvNwo7vYExGICH'
+    '1zthYAGAbv8fPF7mnchx0X4vFpRgYi5MPyeSVVuPZEXlcOwCzO+cy1npxOQhI8EU'
+    '5EzIAeZw+DWWuFe2LscfkqKslNVJOzAOgu9+GlArtWtK+WCwi2G5SFlqZfQYAo55'
+    'm+8urzfaVgp6rjgtMihkAurS8RCWniFppoCfxF7DNUl9b1gRZh0PK4Bx5k4mztGm'
+    'eHrmn6QyNaOoJ2TjguJCu43qi779joddi4mpGvPwfSXYoCCil+0bC+odWjUIkHpN'
+    'K1VBXSKSpMyyqfyFYYiPCYCVMSc/b4AYVKXKH7T1/xCb0thfd8/Gvrkh66YTchmw'
+    '2uM9Y/qUI4fQ3vOFdKt2MWT0x7mZornnfc3pKQ29pdwYCpVdFf0nfupCTVXF8lSO'
+    'IKdHWAPW78hM4hKLtapPupLCu4rgIASnWG94mCgWNM3sxdpJum48O+gT+XJmUeUp'
+    '6nmOqeTV4dPgVq9r76qUtz5VYPX0ntHcsEcmW1oNKjNfVaRMPOTKBCemBaWn5mYB'
+    'DgY7oDL9V7Q0aH8lojH72w9bIzV2S3WCqfj1o1JrVsCnuiDlCY5Gev3m59AskEvU'
+    'JXfZbU26egvRc396YrB3oPTDgF1R+LiG93G4dTIZhamp+LlQgN0cAkgyDPgFVlUk'
+    'vlszYMQaFxvJjjGI5/cy0/+Lp76eUqrvFvOGQPJa2vytC3/n7x0NefrVnkrO+ltt'
+    'Yd4T8roJ8Z+U3pzWVAWK62AGm9TN/3tr4fHfLR39T+n+S0T8HoIQmXf93vOGwfBF'
+    'Nf08433n9E6uX35XS5Kyv5DZWjosCYI65VIb1VIaG6K0fmCNju7NNNQWho8PZ1zb'
+    'FF7VFxNyWB6MMrA6APq0gZ7HeH9/Tpk3sNR+hMlyo3JF+cl9dxedQFDnKyEEp+yU'
+    'QS0kwTCUocybBYknIAjMZ9hrLjwMIBaNmx6cZHabP/vEJPH82KfO0Y84UXi49xon'
+    'Es/iFnP2Cym3+NKRrb9q5ecDyzl2/oIrzCelnFiShszKUOxlMv74RNPogk5ZXfcD'
+    'EmO5qTHxRxwZ7+pl/jqn6teBR6+4htW9t9VbdD2Nq78mYO5awlK6W91TY9hQrw5t'
+    'hUX12ScjK0FkjkjvF9dK67zEfZZk/zXH3v9UvpJ/5+46PeuxpvnTYQ5hiLR0TCKe'
+    'QKHowW19A8I+/bE8758jaTCNy1orljkyG3TfqcumZDA17+/Q2aBKaHQNJ9yphmkv'
+    'pbNkZOG6NVWLi/kipGrYEhzc6Juys/1wrZn9d+jFiAFz+OZ4D4boDyawmLj6SSVK'
+    '48FA6y4NLj+VSObl0MPm/xl04mskbzfxwCuhwyi1zOMV0OAVPPJza9zu78RwBf4C'
+    'hmsyN54iO54Cj4zlZ+Xj+H/3+j8E4wZA4AAAAAElFTkSuQmCC'))
 
 run = [True]
 while run[0]:
