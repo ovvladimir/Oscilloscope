@@ -21,12 +21,11 @@ def icon():
     size = 16
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
-    font = ImageFont.load_default()
-    ts = font.getsize(unicod)
+    ts = draw.textsize(unicod)
     draw.ellipse((0, 0, size - 2, size - 2), fill=(68, 71, 90, 90))
     draw.text(
         ((size - ts[0]) // 2, (size - ts[1]) // 2 - 1),
-        unicod, font=font, fill=(255, 0, 0))
+        unicod, fill=(255, 0, 0))
     root.iconphoto(False, ImageTk.PhotoImage(im))
 
 
